@@ -33,6 +33,10 @@ header p {
   font-size: 2rem;
 }
 
+ul {
+  list-style-type: none;
+}
+
 p,
 li {
   font-size: 1.6rem;
@@ -121,6 +125,7 @@ footer {
   color: var(--secondary);
   font-size: 1.55rem;
 }
+
 .task-actions {
   display: flex;
   flex-wrap: wrap;
@@ -230,5 +235,4 @@ footer {
   .task-list-wrapper {
     flex-basis: 100%;
   }
-
 }
