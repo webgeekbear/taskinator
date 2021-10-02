@@ -1,8 +1,10 @@
-var buttonEl = document.querySelector("#save-task");
+var formEl = document.querySelector("#task-form");
 
-buttonEl.addEventListener("click", createTaskHandler);
+formEl.addEventListener("submit", createTaskHandler);
 
-function createTaskHandler() {
+function createTaskHandler(event) {
+    event.preventDefault();
+    
     var taskItemEl = document.createElement("li");
     taskItemEl.textContent = "Hello World";
     taskItemEl.className = "task-item";
