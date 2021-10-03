@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Taskinator</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <header>
         <h1 class="page-title">Taskinator</h1>
@@ -31,12 +33,12 @@
         </form>
     </header>
 
-    <main class="page-content">
+    <main id="page-content" class="page-content">
         <section class="task-list-wrapper">
             <h2 class="list-title">Tasks To Do</h2>
 
             <!-- Create tasks as li underneath this ul -->
-            <ul id="tasks-to-do">
+            <ul id="tasks-to-do" class="task-list">
             </ul>
         </section>
 
@@ -44,15 +46,15 @@
             <h2 class="list-title">Tasks In Progress</h2>
 
             <!-- Create tasks as li underneath this ul -->
-            <ul id="tasks-in-progress">
+            <ul id="tasks-in-progress" class="task-list">
             </ul>
         </section>
-        
+
         <section class="task-list-wrapper">
             <h2 class="list-title">Tasks Completed</h2>
 
             <!-- Create tasks as li underneath this ul -->
-            <ul id="tasks-completed">
+            <ul id="tasks-completed" class="task-list">
             </ul>
         </section>
 
@@ -63,4 +65,5 @@
     </footer>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
