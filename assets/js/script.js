@@ -1,3 +1,5 @@
+var tasks = [];
+
 var formEl = document.querySelector("#task-form");
 var pageContentEl = document.querySelector("#page-content");
 
@@ -30,6 +32,9 @@ function createTaskEl(taskDataObj) {
 
     // Add entire item to list
     tasksToDoEl.appendChild(listItemEl);
+
+    taskDataObj.id = taskIdCounter;
+    tasks.push(taskDataObj);
 
     // Increase counter for unique ID
     taskIdCounter++;
@@ -82,6 +87,17 @@ function createTaskActions(taskId) {
 function deleteTask(taskId) {
     let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
     taskSelected.remove();
+
+    // Create a new array that contains all the other ID's
+    let updatedTaskArr = [];
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id !== parseInt(taskId)) {
+            updatedTaskArr.push(tasks[i]);
+        }
+    }
+
+    // Assign the tasks array appropriately
+    tasks = updatedTaskArr;
 }
 
 // Edit a task
@@ -102,6 +118,15 @@ function completeEditTask(taskName, taskType, taskId) {
     let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
     taskSelected.querySelector("h3.task-name").textContent = taskName;
     taskSelected.querySelector("span.task-type").textContent = taskType;
+
+    // update the item in the array
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === parseInt(taskId)) {
+            tasks[i].name = taskName;
+            tasks[i].type = taskType;
+            break;
+        }        
+    }
 
     // Reset the form to "add a task" state
     formEl.removeAttribute("data-task-id");
@@ -145,7 +170,8 @@ function taskFormHandler(event) {
         // Package up data as an object
         let taskDataObj = {
             name: taskNameInput,
-            type: taskTypeInput
+            type: taskTypeInput,
+            status: "to do"
         };
 
         createTaskEl(taskDataObj);
@@ -166,5 +192,12 @@ function taskStatusChangeHandler(event) {
     }
     else if (statusValue === "completed") {
         tasksCompletedEl.appendChild(taskSelected);
+    }
+    
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i] === parseInt(taskId)) {
+            tasks[i].status = statusValue;
+            break;
+        }
     }
 }
